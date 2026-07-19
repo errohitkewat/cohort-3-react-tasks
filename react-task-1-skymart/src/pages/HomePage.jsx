@@ -68,7 +68,7 @@ const HomePage = () => {
           <div className="flex items-center justify-between ">
             <h2 className="font-clash font-semibold text-xl">⭐️ Top Rated </h2>
             <button className=" group flex items-center gap-2
-              text-sm text-lime-300 cursor-pointer
+              text-sm text-lime-400 cursor-pointer
               transition-all duration-200 hover:text-lime-500"
               >
                 See All
