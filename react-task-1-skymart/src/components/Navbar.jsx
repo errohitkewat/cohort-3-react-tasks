@@ -4,8 +4,14 @@ import {
   LogOut,
   Zap,
 } from "lucide-react";
+import { useContext } from "react";
+import { MyStore } from "../context/MyContext";
 
 const Navbar = () => {
+
+  const { setIsCartOpen, cartItems } = useContext(MyStore)
+
+
   return (
     <header className="w-full bg-[#0E0E0E] z-100 sticky top-0 left-0 lg:px-20 py-4 border-b border-zinc-800">
       <div className="max-w-[1700px] mx-auto px-5 lg:px-10 flex items-center justify-between ">
@@ -29,17 +35,17 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="lg:flex hidden text-sm text-zinc-400 gap-7">
-            <NavLink to={'/'} className={({ isActive }) =>
-          isActive ? "text-lime-400 font-semibold" : "text-zinc-400 hover:text-white"
-        } >Home</NavLink>
-
-            <NavLink to={'/shop-page'} className={({ isActive }) =>
-          isActive ? "text-lime-400 font-semibold" : "text-zinc-400 hover:text-white"
-        } >Shop</NavLink>
-
-            <NavLink to={'/about-page'} className={({ isActive }) =>
-          isActive ? "text-lime-400 font-semibold" : "text-zinc-400 hover:text-white"
-        } >About</NavLink>
+          <NavLink to={'/'} className={({ isActive }) =>
+            isActive ? "text-lime-400 font-semibold" : "text-zinc-400 hover:text-white"
+          } >Home</NavLink>
+  
+          <NavLink to={'/shop-page'} className={({ isActive }) =>
+            isActive ? "text-lime-400 font-semibold" : "text-zinc-400 hover:text-white"
+          } >Shop</NavLink>
+  
+          <NavLink to={'/about-page'} className={({ isActive }) =>
+            isActive ? "text-lime-400 font-semibold" : "text-zinc-400 hover:text-white"
+          } >About</NavLink>
         </nav>
         
 
@@ -67,8 +73,11 @@ const Navbar = () => {
           {/* Cart */}
 
           <button
+            onClick={() => { 
+              setIsCartOpen(true)
+            }}
             className="p-2 rounded-xl border border-zinc-800
-            bg-[#171717]
+            bg-[#171717] relative
             flex justify-center items-center
             hover:border-lime-400
             hover:text-lime-400
@@ -77,6 +86,9 @@ const Navbar = () => {
             <ShoppingCart
               size={17}
             />
+            <span className="absolute -top-2 -right-2 h-5 w-5 rounded-full bg-lime-400 text-black text-xs flex items-center justify-center">
+              { cartItems.length }
+            </span>
           </button>
 
           {/* Logout */}
@@ -84,7 +96,7 @@ const Navbar = () => {
           <button
             className="p-2 rounded-xl border border-zinc-800
             bg-[#171717]
-            flex justify-center items-center
+            flex justify-center items-center 
             hover:border-red-400
             text-white hover:text-red-400
             duration-300"

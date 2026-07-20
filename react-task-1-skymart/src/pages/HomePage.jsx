@@ -38,7 +38,7 @@ const HomePage = () => {
             Shop by Category
           </h2>
           <button className=" group flex items-center gap-2
-            text-md text-lime-300
+            text-md text-lime-400
             transition-all duration-200 hover:text-lime-500"
             >
               View All
