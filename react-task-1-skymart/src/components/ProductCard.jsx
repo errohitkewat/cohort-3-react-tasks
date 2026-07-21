@@ -13,11 +13,11 @@ const ProductCard = ({ product, isInCart }) => {
       className={`group h-100 overflow-hidden rounded-3xl border bg-[#111111] transition-all duration-300  ${
         product.featured
           ? "border-lime-400"
-          : "border-zinc-700 hover:border-lime-400"
+          : "border-zinc-700 hover:border-lime-400/60"
       }`}
     >
       {/* Image Section */}
-      <div onClick={() => navigate(`/product-detail/${product.id}`) } className="relative h-[50%] overflow-hidden bg-white p-6">
+      <div onClick={() => navigate(`/product-detail/${product.id}`) } className="relative h-[50%] overflow-hidden bg-zinc-300 p-6">
 
         {/* Category Badge */}
         <span className="absolute left-4 top-4 z-10 rounded-full bg-zinc-600 px-3 py-1 text-xs font-medium text-white">
