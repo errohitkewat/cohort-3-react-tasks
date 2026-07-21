@@ -1,6 +1,6 @@
 // Register.jsx
 
-import React, { useContext } from "react";
+import { useContext } from "react";
 import {
   ArrowRight,
   Mail,
@@ -11,14 +11,12 @@ import {
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../context/AuthContext";
-import { useNavigate } from "react-router";
+import { Navigate } from "react-router";
 
 
 const Register = () => {
 
   const { users, setUsers } = useContext(AuthContext);
-
-  const navigate = useNavigate();
 
   const { register, reset, handleSubmit, watch, formState: { errors } } = useForm({mode: "onChange"})
 
@@ -31,7 +29,7 @@ const Register = () => {
     localStorage.setItem("users", JSON.stringify(arr));
     setUsers(arr);
 
-    navigate('/auth')
+    <Navigate to={'/'} />
 
     reset()
   }
