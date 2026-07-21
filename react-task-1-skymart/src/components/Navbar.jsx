@@ -35,7 +35,7 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="lg:flex hidden text-sm text-zinc-400 gap-7">
-          <NavLink to={'/'} className={({ isActive }) =>
+          <NavLink to={'/home'} className={({ isActive }) =>
             isActive ? "text-lime-400 font-semibold" : "text-zinc-400 hover:text-white"
           } >Home</NavLink>
   

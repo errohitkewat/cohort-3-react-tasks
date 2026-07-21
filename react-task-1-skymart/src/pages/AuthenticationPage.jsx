@@ -1,19 +1,23 @@
-import Login from './Login';
-import Register from './Register';
+import { Navigate } from "react-router";
+import Login from "./Login";
+import Register from "./Register";
 
 const AuthenticationPage = () => {
-    const user = JSON.parse(localStorage.getItem("user"));
-    console.log(user);
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const user = JSON.parse(localStorage.getItem("user"));
 
-    return (
-        <>
-            {user ? <Login /> : <Register />}
-        </>
-    );
+  // Already logged in
+  if (user) {
+    return <Navigate to="/" replace />;
+  }
+
+  // No registered users
+  if (users.length === 0) {
+    return <Register />;
+  }
+
+  // Registered user exists but not logged in
+  return <Login />;
 };
 
 export default AuthenticationPage;
-
-
-
-

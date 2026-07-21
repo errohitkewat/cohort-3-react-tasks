@@ -5,14 +5,16 @@ import CategoryCard from '../components/CategoryCard';
 import TopRatedProductCard from '../components/TopRatedProductCard';
 import PolicySection from '../components/PolicySection';
 
-import { statusData } from '../data/statusData';
 import { categories } from '../data/categories';
 
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, FileDown } from 'lucide-react';
 
+import {statusData} from '../data/statusData'
 
 
 const HomePage = () => {
+
+  
   return (
     <div className="lg:px-32 px-5 py-10">
       {/* Home Page Main Card  */}
@@ -20,14 +22,14 @@ const HomePage = () => {
 
 
       {/* Status Section  */}
-      <section className="grid pt-10 gap-5 grid-cols-2 lg:grid-cols-4">
-        {statusData.map((card) => (
-          <StatusCard
-            key={card.id}
-            {...card}
-          />
-        ))}
-      </section>
+        <section className="grid pt-10 gap-5 grid-cols-2 lg:grid-cols-4">
+          {statusData.map((card) => (
+            <StatusCard
+              key={card.id}
+              {...card}
+            />
+          ))}
+        </section>
 
 
       {/* Category Section  */}
