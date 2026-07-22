@@ -1,21 +1,17 @@
-// Register.jsx
+
+import { ArrowRight, Mail, Lock, User, Eye, Zap } from "lucide-react";
 
 import { useContext } from "react";
-import {
-  ArrowRight,
-  Mail,
-  Lock,
-  User,
-  Eye,
-  Zap,
-} from "lucide-react";
 import { useForm } from "react-hook-form";
+import { Navigate, NavLink, useNavigate } from "react-router";
+
 import { AuthContext } from "../context/AuthContext";
-import { Navigate } from "react-router";
 
 
-const Register = () => {
 
+const Register = () => { 
+
+  const navigate = useNavigate()
   const { users, setUsers } = useContext(AuthContext);
 
   const { register, reset, handleSubmit, watch, formState: { errors } } = useForm({mode: "onChange"})
@@ -26,16 +22,16 @@ const Register = () => {
     console.log(data)
 
     const arr = [...users, data];
+
     localStorage.setItem("users", JSON.stringify(arr));
     setUsers(arr);
 
-    <Navigate to={'/'} />
-
+    navigate('/auth/login')
     reset()
   }
 
   return (
-    <section className="min-h-screen bg-[#0b0b0b] flex items-center justify-center px-5 py-10">
+    <section className="min-h-screen w-full bg-[#0b0b0b] flex items-center justify-center px-5 py-10">
       <div className="w-full max-w-md">
         {/* Logo */}
         <div className="flex items-center justify-center gap-3 mb-10">
@@ -68,7 +64,7 @@ const Register = () => {
               />
 
               <input
-                {...register("fullName", {
+                {...register("name", {
                   required: "Name is required",
                   pattern: {
                     value: /^(?!\s*$).+/,
@@ -80,7 +76,7 @@ const Register = () => {
                 className="w-full rounded-2xl text-sm border border-zinc-700 bg-[#1c1c1c] py-3 pl-14 pr-5 text-white placeholder:text-zinc-500 outline-none transition focus:border-lime-400"
               />
             </div>
-            { errors.fullName && <p className="text-red-500 text-sm">{errors.fullName.message}</p> }
+            { errors.name && <p className="text-red-500 text-sm">{errors.name.message}</p> }
 
             {/* Email */}
             <div className="relative">
@@ -122,7 +118,7 @@ const Register = () => {
                       message: "Password must have at least 6 characters!"
                     },
                     maxLength: {
-                      value: 6,
+                      value: 10,
                       message: "Password can't have greater than 10 characters!"
                     }
                   })
@@ -176,9 +172,9 @@ const Register = () => {
           {/* Footer */}
           <p className="mt-8 text-md text-center text-zinc-500">
             Already have an account?{" "}
-            <button className="font-semibold cursor-pointer text-lime-400 ">
+            <NavLink  to={'/auth/login'} className="font-semibold cursor-pointer text-lime-400 ">
               Sign in
-            </button>
+            </NavLink>
           </p>
         </div>
       </div>
@@ -187,3 +183,6 @@ const Register = () => {
 };
 
 export default Register;
+
+
+

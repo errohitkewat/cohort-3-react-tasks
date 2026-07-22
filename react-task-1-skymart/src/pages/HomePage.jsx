@@ -10,6 +10,7 @@ import { categories } from '../data/categories';
 import { ArrowRight, FileDown } from 'lucide-react';
 
 import {statusData} from '../data/statusData'
+import { NavLink } from 'react-router';
 
 
 const HomePage = () => {
@@ -22,14 +23,14 @@ const HomePage = () => {
 
 
       {/* Status Section  */}
-        <section className="grid pt-10 gap-5 grid-cols-2 lg:grid-cols-4">
+      <section className="grid pt-10 gap-5 grid-cols-2 lg:grid-cols-4">
           {statusData.map((card) => (
             <StatusCard
               key={card.id}
               {...card}
             />
           ))}
-        </section>
+      </section>
 
 
       {/* Category Section  */}
@@ -39,7 +40,7 @@ const HomePage = () => {
           <h2 className="font-clash text-2xl font-semibold text-white">
             Shop by Category
           </h2>
-          <button className=" group flex items-center gap-2
+          <NavLink to={"/shop-page"} className=" group flex items-center gap-2
             text-md text-lime-400
             transition-all duration-200 hover:text-lime-500"
             >
@@ -47,7 +48,7 @@ const HomePage = () => {
               <ArrowRight
               size={18}
             />
-          </button>
+          </NavLink>
         </div>
 
         {/* Categories Grid */}
@@ -69,7 +70,7 @@ const HomePage = () => {
           {/* Heading */}
           <div className="flex items-center justify-between ">
             <h2 className="font-clash font-semibold text-xl">⭐️ Top Rated </h2>
-            <button className=" group flex items-center gap-2
+            <NavLink to={"/shop-page"} className=" group flex items-center gap-2
               text-sm text-lime-400 cursor-pointer
               transition-all duration-200 hover:text-lime-500"
               >
@@ -77,7 +78,7 @@ const HomePage = () => {
                 <ArrowRight
                   size={14}
                 />
-            </button>
+            </NavLink>
           </div>
 
           {/* products container */}
@@ -94,7 +95,7 @@ const HomePage = () => {
           {/* Heading */}
           <div className="flex items-center justify-between ">
             <h2 className="font-clash font-semibold text-xl">⚡️ New Arrivals  </h2>
-            <button className=" group flex items-center gap-2
+            <NavLink to={"shop-page"} className=" group flex items-center gap-2
               text-sm text-lime-300 cursor-pointer
               transition-all duration-200 hover:text-lime-500"
               >
@@ -102,7 +103,7 @@ const HomePage = () => {
                 <ArrowRight
                   size={14}
               />
-            </button>
+            </NavLink>
           </div>
 
           {/* products container */}

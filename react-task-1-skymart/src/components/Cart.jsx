@@ -26,7 +26,7 @@ const Cart = () =>  {
             />
     
             {/* Drawer */}
-            <div className={`absolute right-0 top-0 h-full w-[35%] border-l border-zinc-700 bg-[#121212] transition-transform duration-300
+            <div className={`absolute right-0 top-0 h-full w-120 border-l border-zinc-700 bg-[#121212] transition-transform duration-300
                 ${ isCartOpen ? "translate-x-0" : "translate-x-full" }`}
             >
                 

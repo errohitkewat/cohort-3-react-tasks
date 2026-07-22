@@ -1,4 +1,4 @@
-import { NavLink } from "react-router";
+import { Navigate, NavLink } from "react-router";
 import {
   ShoppingCart,
   LogOut,
@@ -6,10 +6,12 @@ import {
 } from "lucide-react";
 import { useContext } from "react";
 import { MyStore } from "../context/MyContext";
+import { AuthContext } from "../context/AuthContext";
 
 const Navbar = () => {
 
   const { setIsCartOpen, cartItems } = useContext(MyStore)
+  const { user, setUser } = useContext(AuthContext);
 
 
   return (
@@ -35,7 +37,7 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="lg:flex hidden text-sm text-zinc-400 gap-7">
-          <NavLink to={'/home'} className={({ isActive }) =>
+          <NavLink to={'/'} className={({ isActive }) =>
             isActive ? "text-lime-400 font-semibold" : "text-zinc-400 hover:text-white"
           } >Home</NavLink>
   
@@ -62,11 +64,11 @@ const Navbar = () => {
             px-2 py-1"
           >
             <div className="leading-none rounded-lg px-2 py-1.5 bg-lime-400 text-black flex items-center justify-center font-bold">
-              R
+              { user.name.split("")[0] }
             </div>
 
             <span className="text-zinc-300">
-              Rohit Kewat
+              { user.name }
             </span>
           </button>
 
@@ -94,6 +96,10 @@ const Navbar = () => {
           {/* Logout */}
 
           <button
+            onClick={() => {
+              localStorage.removeItem("user");
+              setUser(null)
+            }}
             className="p-2 rounded-xl border border-zinc-800
             bg-[#171717]
             flex justify-center items-center 

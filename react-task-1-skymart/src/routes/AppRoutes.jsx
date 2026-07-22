@@ -9,6 +9,7 @@ import Login from '../pages/Login';
 import ProtectedRoute from './ProtectedRoute';
 import MainLayout from '../layouts/MainLayout';
 import AuthLayout from '../layouts/AuthLayout';
+import ProtectedAuthRoute from './ProtectedAuthRoute';
 
 const AppRoutes = () => {
     return (
@@ -16,25 +17,25 @@ const AppRoutes = () => {
             <Routes>
 
                 {/* Main Routes */}
-                <Route element={<MainLayout />}>
-                    <Route path={"/"} element={
+                <Route path={"/"} element={<ProtectedRoute><MainLayout /></ProtectedRoute>}>
+                    <Route path={""} element={
                         <ProtectedRoute>
                             <HomePage />
                         </ProtectedRoute>
                     } />
-                    <Route path={"/shop-page"} element={
+                    <Route path={"shop-page"} element={
                         <ProtectedRoute>
                             <ShopPage />
                         </ProtectedRoute>
                     } />
     
-                    <Route path={"/about-page"} element={
+                    <Route path={"about-page"} element={
                         <ProtectedRoute>
                             <AboutPage />
                         </ProtectedRoute>
                     } />
     
-                    <Route path={'/product-detail/:id'} element={
+                    <Route path={'product-detail/:id'} element={
                         <ProtectedRoute>
                             <ProductDetailsPage />
                         </ProtectedRoute>
@@ -42,9 +43,9 @@ const AppRoutes = () => {
                 </Route>
 
                 {/* Auth Routes */}
-                <Route element={<AuthLayout />}>
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
+                <Route path={ "/auth"} element={<ProtectedAuthRoute><AuthLayout /></ProtectedAuthRoute>}>
+                    <Route path="/auth/login" element={<Login />} />
+                    <Route path="/auth/register" element={<Register />} />
                 </Route>
 
             </Routes>
@@ -53,6 +54,8 @@ const AppRoutes = () => {
 }
 
 export default AppRoutes
+
+
 
 
 

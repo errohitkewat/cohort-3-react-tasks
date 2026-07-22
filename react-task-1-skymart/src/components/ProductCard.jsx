@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Star, ShoppingCart, Check } from "lucide-react";
 import { MyStore } from "../context/MyContext";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const ProductCard = ({ product, isInCart }) => {
 
@@ -83,7 +84,10 @@ const ProductCard = ({ product, isInCart }) => {
               </button>
             ) : (
               <button
-                onClick={() => setCartItems([...cartItems, product])}
+                  onClick={() => {
+                    setCartItems([...cartItems, product])
+                    toast.success(`${product.title} added to cart!`);
+                  }}
                 className="flex items-center gap-2 rounded-full bg-lime-400 px-3 py-1 text-sm font-semibold text-black transition-colors duration-300 hover:bg-lime-300">
                 <ShoppingCart size={16} />
                 Add

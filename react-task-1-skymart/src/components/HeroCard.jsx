@@ -1,8 +1,30 @@
-import React from "react";
+
 import { ArrowRight, ShoppingBag } from "lucide-react";
+import { useContext, useState } from "react";
+import { Navigate, NavLink } from "react-router";
+import { AuthContext } from "../context/AuthContext"
 
 
+
+// Function to get Greeting according to time 
+const getGreeting = () => {
+  const hour = new Date().getHours();
+
+  if (hour >= 5 && hour < 12) return "Good Morning";
+  if (hour >= 12 && hour < 17) return "Good Afternoon";
+  if (hour >= 17 && hour < 21) return "Good Evening";
+  return "Good Night";
+};
+
+
+// Hero Card Function
 const HeroCard = () => {
+
+  const { user } = useContext(AuthContext)
+
+  // state to store greeting 
+  const [greeting] = useState(getGreeting());
+
   return (
     <section className="relative overflow-hidden rounded-3xl border border-zinc-600 bg-[#121212] p-6 sm:p-8 lg:p-12">
       {/* Background Grid */}
@@ -24,13 +46,15 @@ const HeroCard = () => {
         <div className="flex flex-col gap-5 ">
 
           <span className="inline-flex items-center gap-2  text-md text-lime-500">
-            Good Evening 👋
+            { greeting } 👋
           </span>
 
           <h1 className=" font-clash text-5xl sm:text-6xl lg:text-5xl font-semibold leading-[1.05] text-white">
             Welcome Back, 
             <br />
-            <span className="text-lime-500">Rohit!</span>
+            <span className="text-lime-500">
+              {user.name.split(" ")[0]} !
+            </span>
           </h1>
 
           <p className=" max-w-md text-md leading-6 mb-2  text-zinc-500">
@@ -39,7 +63,7 @@ const HeroCard = () => {
 
           <div className=" flex flex-wrap gap-4">
 
-            <button className="duration-300 hover:border border border-lime-500 hover:bg-transparent hover:text-lime-500 hover:lime-orange-500 group text-sm flex items-center gap-2 rounded-xl bg-lime-500 px-5 py-2 font-semibold text-black transition ">
+            <NavLink to={"/shop-page"} className="duration-300 hover:border border border-lime-500 hover:bg-transparent hover:text-lime-500 hover:lime-orange-500 group text-sm flex items-center gap-2 rounded-xl bg-lime-500 px-5 py-2 font-semibold text-black transition ">
               Shop Now
 
               <ArrowRight
@@ -47,11 +71,11 @@ const HeroCard = () => {
                 className="transition group-hover:translate-x-1"
               />
 
-            </button>
+            </NavLink>
 
-            <button className="rounded-xl text-sm border border-zinc-700 px-5 py-2 text-white transition duration-300 hover:text-lime-500 hover:border-lime-500 ">
+            <NavLink to={"/shop-page"} className="rounded-xl text-sm border border-zinc-700 px-5 py-2 text-white transition duration-300 hover:text-lime-500 hover:border-lime-500 ">
               View All Products
-            </button>
+            </NavLink>
 
           </div>
 

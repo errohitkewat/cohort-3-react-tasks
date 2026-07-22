@@ -7,14 +7,30 @@ import {
     Eye,
     Zap,
 } from "lucide-react";
+import { useContext } from "react";
+import { useForm } from "react-hook-form";
+import { NavLink, useNavigate } from "react-router";
+import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
 
+  const navigate = useNavigate()
+  const { users , setUser } = useContext(AuthContext)
+  const { register, reset, handleSubmit, formState: { errors } } = useForm()
 
+  const submitForm = (data) => { 
+    let user = users.find(elem => elem.email === data.email && elem.password === data.password)
+    console.log(user)
+    localStorage.setItem("user", JSON.stringify(user));
+    setUser(user);
+      
+    navigate('/')
+    reset();
+  }
     
 
   return (
-    <section className="min-h-screen bg-[#0b0b0b] flex items-center justify-center px-5 py-10">
+    <section className="min-h-screen w-full bg-[#0b0b0b] flex items-center justify-center px-5 py-10">
         <div className="w-full max-w-md">
           {/* Logo */}
             <div className="flex items-center justify-center gap-3 mb-10">
@@ -38,7 +54,7 @@ const Login = () => {
                 </p>
       
                 {/* Form */}
-                <form className="mt-5 space-y-5">
+                <form onSubmit={handleSubmit(submitForm)} className="mt-5 space-y-5">
       
                   {/* Email */}
                     <div className="relative">
@@ -49,10 +65,18 @@ const Login = () => {
           
                         <input
                           type="email"
+                          {...register("email", {
+                              required: "Email is required!",
+                              pattern: {
+                                  value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                                  message: "Please Enter a valid email!"
+                              }
+                          })}
                           placeholder="Email address"
                           className="w-full rounded-2xl border border-zinc-700 bg-[#1c1c1c] py-3 text-sm pl-14 pr-5 text-white placeholder:text-zinc-500 outline-none transition focus:border-lime-400"
                         />
                     </div>
+                    { errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p> }
         
                     {/* Password */}
                     <div className="relative">
@@ -63,6 +87,19 @@ const Login = () => {
           
                         <input
                           type="password"
+                          { 
+                            ...register("password", {
+                              required: "Password is required!", 
+                              minLength: {
+                                value: 6,
+                                message: "Password must have at least 6 characters!"
+                              },
+                              maxLength: {
+                                value: 10,
+                                message: "Password can't have greater than 10 characters!"
+                              }
+                            })
+                          }
                           placeholder="Password (min 6 chars)"
                           className="w-full rounded-2xl border border-zinc-700 bg-[#1c1c1c] py-3 text-sm pl-14 pr-14 text-white placeholder:text-zinc-500 outline-none transition focus:border-lime-400"
                         />
@@ -72,6 +109,7 @@ const Login = () => {
                           className="absolute right-5 top-1/2 -translate-y-1/2 cursor-pointer text-zinc-500"
                         />
                     </div>
+                    { errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p> }
         
                     {/* Button */}
                     <button
@@ -89,9 +127,9 @@ const Login = () => {
                 {/* Footer */}
                 <p className="mt-8 text-md text-center text-zinc-500">
                     Don't have an account ?{" "}
-                    <button className="font-semibold cursor-pointer text-lime-400 ">
+                    <NavLink to={'/auth/register'} className="font-semibold cursor-pointer text-lime-400 ">
                         Create One
-                    </button>
+                    </NavLink>
                 </p>
             </div>
         </div>
@@ -100,3 +138,5 @@ const Login = () => {
 };
 
 export default Login;
+
+
