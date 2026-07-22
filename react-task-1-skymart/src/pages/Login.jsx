@@ -1,12 +1,5 @@
 
-import {
-    ArrowRight,
-    Mail,
-    Lock,
-    User,
-    Eye,
-    Zap,
-} from "lucide-react";
+import { ArrowRight, Mail, Lock, User, Eye, Zap, EyeOff} from "lucide-react";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { NavLink, useNavigate } from "react-router";
@@ -15,8 +8,8 @@ import { AuthContext } from "../context/AuthContext";
 const Login = () => {
 
   const navigate = useNavigate()
-  const { users , setUser } = useContext(AuthContext)
-  const { register, reset, handleSubmit, formState: { errors } } = useForm()
+  const { users , setUser, showPassword, setShowPassword } = useContext(AuthContext)
+  const { register, reset, handleSubmit, formState: { errors } } = useForm({mode: "onChange"})
 
   const submitForm = (data) => { 
     let user = users.find(elem => elem.email === data.email && elem.password === data.password)
@@ -86,7 +79,7 @@ const Login = () => {
                         />
           
                         <input
-                          type="password"
+                          type={ showPassword ? "text" : "password"}
                           { 
                             ...register("password", {
                               required: "Password is required!", 
@@ -104,10 +97,13 @@ const Login = () => {
                           className="w-full rounded-2xl border border-zinc-700 bg-[#1c1c1c] py-3 text-sm pl-14 pr-14 text-white placeholder:text-zinc-500 outline-none transition focus:border-lime-400"
                         />
           
-                        <Eye
-                          size={15}
-                          className="absolute right-5 top-1/2 -translate-y-1/2 cursor-pointer text-zinc-500"
-                        />
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
+                          className="absolute right-5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-lime-400 transition-colors"
+                        >
+                          {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                        </button>
                     </div>
                     { errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p> }
         
@@ -127,7 +123,7 @@ const Login = () => {
                 {/* Footer */}
                 <p className="mt-8 text-md text-center text-zinc-500">
                     Don't have an account ?{" "}
-                    <NavLink to={'/auth/register'} className="font-semibold cursor-pointer text-lime-400 ">
+                    <NavLink to={'/register'} className="font-semibold cursor-pointer text-lime-400 ">
                         Create One
                     </NavLink>
                 </p>

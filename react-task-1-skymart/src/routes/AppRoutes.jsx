@@ -43,9 +43,9 @@ const AppRoutes = () => {
                 </Route>
 
                 {/* Auth Routes */}
-                <Route path={ "/auth"} element={<ProtectedAuthRoute><AuthLayout /></ProtectedAuthRoute>}>
-                    <Route path="/auth/login" element={<Login />} />
-                    <Route path="/auth/register" element={<Register />} />
+                <Route element={<AuthLayout />}>
+                    <Route path="/login" element={<ProtectedAuthRoute><Login /></ProtectedAuthRoute>} />
+                    <Route path="/register" element={<ProtectedAuthRoute><Register /></ProtectedAuthRoute>} />
                 </Route>
 
             </Routes>

@@ -9,6 +9,13 @@ const ProductCard = ({ product, isInCart }) => {
   const { cartItems, setCartItems } = useContext(MyStore);
   const navigate = useNavigate();
 
+  const addToCart = (product) => {
+    const items = [...cartItems, product]
+    localStorage.setItem("cartItems", JSON.stringify(items))
+    setCartItems([...cartItems, product])
+    toast.success(`${product.title} added to cart!`);
+  }
+
   return (
     <div
       className={`group h-100 overflow-hidden rounded-3xl border bg-[#111111] transition-all duration-300  ${
@@ -84,10 +91,7 @@ const ProductCard = ({ product, isInCart }) => {
               </button>
             ) : (
               <button
-                  onClick={() => {
-                    setCartItems([...cartItems, product])
-                    toast.success(`${product.title} added to cart!`);
-                  }}
+                onClick={() => addToCart(product)}
                 className="flex items-center gap-2 rounded-full bg-lime-400 px-3 py-1 text-sm font-semibold text-black transition-colors duration-300 hover:bg-lime-300">
                 <ShoppingCart size={16} />
                 Add

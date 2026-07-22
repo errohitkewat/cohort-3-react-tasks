@@ -25,7 +25,7 @@ export const StoreContextProvider = ({ children }) => {
 
     // States for the cartItems and if cart is open or not 
     const [isCartOpen, setIsCartOpen] = useState(false);
-    const [cartItems, setCartItems] = useState([])
+    const [cartItems, setCartItems] = useState(JSON.parse(localStorage.getItem("cartItems")) || [])
 
 
 

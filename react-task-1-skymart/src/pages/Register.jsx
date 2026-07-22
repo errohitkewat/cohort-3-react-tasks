@@ -1,9 +1,9 @@
 
-import { ArrowRight, Mail, Lock, User, Eye, Zap } from "lucide-react";
+import { ArrowRight, Mail, Lock, User, Eye, Zap, EyeOff } from "lucide-react";
 
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Navigate, NavLink, useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 
 import { AuthContext } from "../context/AuthContext";
 
@@ -12,21 +12,18 @@ import { AuthContext } from "../context/AuthContext";
 const Register = () => { 
 
   const navigate = useNavigate()
-  const { users, setUsers } = useContext(AuthContext);
-
+  const { users, setUsers, showPassword, setShowPassword, showConfirmPassword, setShowConfirmPassword } = useContext(AuthContext);
   const { register, reset, handleSubmit, watch, formState: { errors } } = useForm({mode: "onChange"})
-
   const password = watch("password");
 
   const submitForm = (data) => { 
     console.log(data)
-
     const arr = [...users, data];
 
     localStorage.setItem("users", JSON.stringify(arr));
     setUsers(arr);
 
-    navigate('/auth/login')
+    navigate('/login')
     reset()
   }
 
@@ -108,32 +105,36 @@ const Register = () => {
                 size={15}
                 className="absolute left-5 top-1/2 -translate-y-1/2 text-zinc-500"
               />
-
+            
               <input
-                { 
-                  ...register("password", {
-                    required: "Password is required!", 
-                    minLength: {
-                      value: 6,
-                      message: "Password must have at least 6 characters!"
-                    },
-                    maxLength: {
-                      value: 10,
-                      message: "Password can't have greater than 10 characters!"
-                    }
-                  })
-                }
-                type="password"
+                {...register("password", {
+                  required: "Password is required!",
+                  minLength: {
+                    value: 6,
+                    message: "Password must have at least 6 characters!",
+                  },
+                  maxLength: {
+                    value: 10,
+                    message: "Password can't have greater than 10 characters!",
+                  },
+                })}
+                type={showPassword ? "text" : "password"}
                 placeholder="Password (min 6 chars)"
-                className="w-full rounded-2xl border border-zinc-700 bg-[#1c1c1c] py-3 text-sm pl-14 pr-14 text-white placeholder:text-zinc-500 outline-none transition focus:border-lime-400"
+                className="w-full rounded-2xl border border-zinc-700 bg-[#1c1c1c] py-3 pl-14 pr-14 text-sm text-white placeholder:text-zinc-500 outline-none transition focus:border-lime-400"
               />
-
-              <Eye
-                size={15}
-                className="absolute right-5 top-1/2 -translate-y-1/2 cursor-pointer text-zinc-500"
-              />
+            
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-lime-400 transition-colors"
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
             </div>
-            { errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p> }
+            
+            {errors.password && (
+              <p className="text-sm text-red-500">{errors.password.message}</p>
+            )}
 
             {/* Confirm Password */}
             <div className="relative">
@@ -149,10 +150,18 @@ const Register = () => {
                     validate: (value) => value === password || "Passwords do not match!",
                   })
                 }
-                type="password"
+                type={showConfirmPassword ? "text" : "password"}
                 placeholder="Confirm password"
                 className="w-full rounded-2xl border border-zinc-700  bg-[#1c1c1c] py-3 text-sm pl-14 pr-5 text-white placeholder:text-zinc-500 outline-none focus:border-lime-400"
               />
+
+              <button
+                type="button"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                className="absolute right-5 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-lime-400 transition-colors"
+              >
+                {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
             </div>
             { errors.confirmPassword && <p className="text-red-500 text-sm">{errors.confirmPassword.message}</p> }
 
@@ -172,7 +181,7 @@ const Register = () => {
           {/* Footer */}
           <p className="mt-8 text-md text-center text-zinc-500">
             Already have an account?{" "}
-            <NavLink  to={'/auth/login'} className="font-semibold cursor-pointer text-lime-400 ">
+            <NavLink  to={'/login'} className="font-semibold cursor-pointer text-lime-400 ">
               Sign in
             </NavLink>
           </p>

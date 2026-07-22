@@ -9,8 +9,8 @@ import { categories } from '../data/categories';
 
 import { ArrowRight, FileDown } from 'lucide-react';
 
-import {statusData} from '../data/statusData'
 import { NavLink } from 'react-router';
+import StatusSection from '../components/StatusSection';
 
 
 const HomePage = () => {
@@ -23,15 +23,7 @@ const HomePage = () => {
 
 
       {/* Status Section  */}
-      <section className="grid pt-10 gap-5 grid-cols-2 lg:grid-cols-4">
-          {statusData.map((card) => (
-            <StatusCard
-              key={card.id}
-              {...card}
-            />
-          ))}
-      </section>
-
+      <StatusSection />
 
       {/* Category Section  */}
       <section className="pt-15">
