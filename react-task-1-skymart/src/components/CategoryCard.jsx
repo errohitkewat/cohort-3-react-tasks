@@ -1,8 +1,4 @@
-const CategoryCard = ({
-  emoji,
-  title,
-  items,
-}) => {
+const CategoryCard = ({emoji, title, items,}) => {
   return (
     <div className=" group flex flex-col items-center justify-center rounded-3xl border
       border-zinc-600 bg-[#131313] p-4 cursor-pointer text-white 

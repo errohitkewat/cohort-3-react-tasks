@@ -1,7 +1,11 @@
 import { ArrowRight, Box, HeartHandshake, HeartPlus, ShieldCheck, Star, Truck, Users, Zap } from 'lucide-react';
 import React from 'react'
+import { useNavigate } from 'react-router';
 
 const AboutPage = () => {
+
+  const navigate = useNavigate();
+
   return (
     <div className="py-10 px-4 lg:px-32">
 
@@ -22,25 +26,25 @@ const AboutPage = () => {
 
       {/* About Status Cards Container  */}
       <div className="max-w-5xl grid grid-cols-2 lg:grid-cols-4 gap-8 py-10 m-auto ">
-        <div className="border border-zinc-400 flex flex-col items-center  p-4 rounded-2xl">
+        <div className="border border-zinc-100/40 flex flex-col items-center  p-4 rounded-2xl">
           <Box className="text-lime-400 mb-1" />
           <h1 className="font-clash font-semibold text-3xl">20K+</h1>
           <p className="text-xs mt-1 text-zinc-500">Products</p>
         </div>
 
-        <div className="border border-zinc-400 flex flex-col items-center  p-4 rounded-2xl">
+        <div className="border border-zinc-100/40 flex flex-col items-center  p-4 rounded-2xl">
           <Users className="text-lime-400 mb-1" />
           <h1 className="font-clash font-semibold text-3xl">50K+</h1>
           <p className="text-xs mt-1 text-zinc-500">Happy Customers</p>
         </div>
 
-        <div className="border border-zinc-400 flex flex-col items-center  p-4 rounded-2xl">
+        <div className="border border-zinc-100/40 flex flex-col items-center  p-4 rounded-2xl">
           <Star className="text-lime-400 mb-1" />
           <h1 className="font-clash font-semibold text-3xl">4.9</h1>
           <p className="text-xs mt-1 text-zinc-500">Average Rating</p>
         </div>
 
-        <div className="border border-zinc-400 flex flex-col items-center  p-4 rounded-2xl">
+        <div className="border border-zinc-100/40 flex flex-col items-center  p-4 rounded-2xl">
           <Truck className="text-lime-400 mb-1" />
           <h1 className="font-clash font-semibold text-3xl">99.9%</h1>
           <p className="text-xs mt-1 text-zinc-500">On-Time Delivery</p>
@@ -50,7 +54,7 @@ const AboutPage = () => {
 
 
       {/* Our Story  */}
-      <div className="max-w-5xl flex flex-col gap-4 mt-5 m-auto border border-zinc-400 p-8 rounded-3xl">
+      <div className="max-w-5xl flex flex-col gap-4 mt-5 m-auto border border-zinc-100/40 p-8 rounded-3xl">
         <h2 className="font-clash font-semibold text-3xl">Out Story</h2>
         <p className="text-sm font-light text-zinc-500 ">SkyMart started in 2022 as a small side project — two engineers tired of bloated, slow e-commerce experiences. We asked ourselves: what if shopping online was actually enjoyable?</p>
         <p className="text-sm font-light text-zinc-500 ">Three years later, SkyMart serves over 50,000 customers across the country. We stock electronics, fashion, jewelry, and everyday essentials — all at prices that don't require a second mortgage.</p>
@@ -66,7 +70,7 @@ const AboutPage = () => {
 
         <div className=" gap-8 grid gird-cold-1 lg:grid-cols-2">
 
-          <div className="border w-full  border-zinc-400 hover:border-lime-400/50 transition-all duration-300 p-5 pr-15 rounded-2xl flex gap-3">
+          <div className="border w-full  border-zinc-100/40 hover:border-lime-400/50 transition-all duration-300 p-5 pr-15 rounded-2xl flex gap-3">
             <div className="p-2 mt-1 h-fit w-fit text-lime-500 bg-lime-400/10 rounded-xl ">
               <ShieldCheck size={22} />
             </div>
@@ -76,7 +80,7 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="border w-full  border-zinc-400 hover:border-lime-400/50 transition-all duration-300 p-5 pr-15 rounded-2xl flex gap-3">
+          <div className="border w-full  border-zinc-100/40 hover:border-lime-400/50 transition-all duration-300 p-5 pr-15 rounded-2xl flex gap-3">
             <div className="p-2 mt-1 h-fit w-fit text-lime-500 bg-lime-400/10 rounded-xl ">
               <Truck size={22} />
             </div>
@@ -86,7 +90,7 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="border w-full  border-zinc-400 hover:border-lime-400/50 transition-all duration-300 p-5 pr-15 rounded-2xl flex gap-3">
+          <div className="border w-full  border-zinc-100/40 hover:border-lime-400/50 transition-all duration-300 p-5 pr-15 rounded-2xl flex gap-3">
             <div className="p-2 mt-1 h-fit w-fit text-lime-500 bg-lime-400/10 rounded-xl ">
               <HeartHandshake size={22} />
             </div>
@@ -96,7 +100,7 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="border w-full  border-zinc-400 hover:border-lime-400/50 transition-all duration-300 p-5 pr-15 rounded-2xl flex gap-3">
+          <div className="border w-full  border-zinc-100/40 hover:border-lime-400/50 transition-all duration-300 p-5 pr-15 rounded-2xl flex gap-3">
             <div className="p-2 mt-1 h-fit w-fit text-lime-500 bg-lime-400/10 rounded-xl ">
               <Star size={22} />
             </div>
@@ -114,10 +118,10 @@ const AboutPage = () => {
 
 
       {/* Ready to Shop */}
-      <div className="max-w-5xl flex flex-col items-center gap-2 mt-10 m-auto border py-10 px-5 text-center border-lime-400/30 rounded-3xl">
+      <div className="max-w-5xl flex flex-col items-center gap-2 mt-10 m-auto border py-10 px-5 text-center border-lime-400/40 rounded-3xl">
         <h1 className="font-clash font-semibold text-3xl">Ready To Shop?</h1>
         <p className="text-sm text-zinc-500 font-light">Explore thousands of products at unbeatable prices.</p>
-        <button className=" group flex items-center gap-1 border
+        <button onClick={() => navigate("/shop-page")} className=" group flex items-center gap-1 border
               text-md text-black bg-lime-400 py-2 px-5 cursor-pointer hover:bg-transparent hover:text-lime-400 hover:border-lime-400
               transition-all duration-200 font-clash font-bold mt-3 rounded-xl "
               >

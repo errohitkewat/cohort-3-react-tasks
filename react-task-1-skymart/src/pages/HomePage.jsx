@@ -1,20 +1,25 @@
 
 import HeroCard from '../components/HeroCard';
-import StatusCard from '../components/StatusCard';
-import CategoryCard from '../components/CategoryCard';
 import TopRatedProductCard from '../components/TopRatedProductCard';
 import PolicySection from '../components/PolicySection';
 
-import { categories } from '../data/categories';
+import { ArrowRight } from 'lucide-react';
 
-import { ArrowRight, FileDown } from 'lucide-react';
-
-import { NavLink } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 import StatusSection from '../components/StatusSection';
+import CategoriesSection from '../components/CategoriesSection';
+import { useContext } from 'react';
+import { MyStore } from '../context/MyContext';
 
 
 const HomePage = () => {
 
+  const navigate = useNavigate();
+
+  const { productsData } = useContext(MyStore);
+
+  let topRated = productsData.filter(product => product.rating >= 4.95)
+  let newArrivals = productsData.filter(product => product.rating <= 2.56) 
   
   return (
     <div className="lg:px-32 px-5 py-10">
@@ -44,14 +49,7 @@ const HomePage = () => {
         </div>
 
         {/* Categories Grid */}
-        <div className=" grid gap-5 py-5  grid-cols-2 lg:grid-cols-4">
-          {categories.map((category) => (
-            <CategoryCard
-              key={category.id}
-              {...category}
-            />
-          ))}
-        </div>
+        <CategoriesSection />
       </section>
 
 
@@ -62,7 +60,7 @@ const HomePage = () => {
           {/* Heading */}
           <div className="flex items-center justify-between ">
             <h2 className="font-clash font-semibold text-xl">⭐️ Top Rated </h2>
-            <NavLink to={"/shop-page"} className=" group flex items-center gap-2
+            <button onClick={() => navigate("/shop-page?sort=top-rated")} className=" group flex items-center gap-2
               text-sm text-lime-400 cursor-pointer
               transition-all duration-200 hover:text-lime-500"
               >
@@ -70,15 +68,17 @@ const HomePage = () => {
                 <ArrowRight
                   size={14}
                 />
-            </NavLink>
+            </button>
           </div>
 
           {/* products container */}
           <div className="flex flex-col gap-4  py-5">
-            {/* product card  */}
-            <TopRatedProductCard />
-            <TopRatedProductCard />
-            <TopRatedProductCard />
+            {/*Top Rated product card  */}
+            { 
+              topRated.map(product => { 
+                return <TopRatedProductCard key={product.id} product={ product } />
+              })
+            }
           </div>
         </div>
 
@@ -100,10 +100,12 @@ const HomePage = () => {
 
           {/* products container */}
           <div className="flex flex-col gap-4  py-5">
-            {/* product card  */}
-            <TopRatedProductCard />
-            <TopRatedProductCard />
-            <TopRatedProductCard />
+            {/* New Arrival product card  */} 
+            { 
+              newArrivals.map(product => { 
+                return <TopRatedProductCard key={product.id} product={ product } />
+              })
+            }
           </div>
         </div>
 

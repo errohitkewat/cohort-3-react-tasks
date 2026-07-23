@@ -1,7 +1,16 @@
 
 import { Minus, Plus, Trash2, X } from "lucide-react";
+import { useContext } from "react";
+import {MyStore} from "../context/MyContext"
 
 const CartProductCard = ({ item }) => {
+    const { cartItems, setCartItems } = useContext(MyStore)
+
+    const deleteCartProduct = (id) => { 
+        localStorage.setItem("cartItems", JSON.stringify(cartItems.filter(elem => elem.id !== id)))
+        setCartItems(cartItems.filter(elem => elem.id !== id));
+    }
+
     return (
         <div className="flex items-center gap-4 rounded-2xl border border-zinc-700 bg-[#111111] px-4 py-3 hover:border-lime-400/60 transition-all duration-300">
                                   
@@ -49,7 +58,7 @@ const CartProductCard = ({ item }) => {
 
                     </div>
 
-                    <button className="text-red-500 transition hover:text-red-400">
+                    <button onClick={() => deleteCartProduct(item.id) } className="text-red-500 transition hover:text-red-400">
                         <Trash2 size={15} />
                     </button>
 

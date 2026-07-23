@@ -43,7 +43,7 @@ const Cart = () =>  {
       
       
                 {/* Cart Items Container */}
-                <div className="h-[calc(100%-170px)] scrollbar-none flex flex-col gap-4 overflow-y-auto p-5">
+                <div className="h-[calc(100%-170px)] scrollbar-none flex flex-col gap-4 overflow-y-auto px-5 pt-7 pb-15">
                     {cartItems.length === 0 ? (
                         <p className="text-zinc-400"> Your cart is empty. </p>
                     ) : (

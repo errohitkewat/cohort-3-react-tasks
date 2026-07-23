@@ -10,9 +10,12 @@ import {
   Truck,
 } from "lucide-react";
 import FeatureCard from "./FeatureCard";
+import { useContext } from "react";
+import { MyStore } from "../context/MyContext";
 
 const ProductDetailInfo = ({ product }) => {
 
+  const { setIsCartOpen } = useContext(MyStore)
 
   return (
     <div className="flex flex-col">
@@ -90,7 +93,7 @@ const ProductDetailInfo = ({ product }) => {
         </button>
       </div>
 
-      <button className="mt-5 rounded-2xl border border-zinc-700 py-3 text-zinc-300 transition hover:border-lime-400 hover:text-white">
+      <button onClick={() => setIsCartOpen(true)} className="mt-5 rounded-2xl border border-zinc-700 py-3 text-zinc-300 transition hover:border-lime-400 hover:text-white">
         View Cart →
       </button>
 

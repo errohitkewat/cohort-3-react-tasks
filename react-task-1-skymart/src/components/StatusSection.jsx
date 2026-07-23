@@ -4,7 +4,7 @@ import { MyStore } from '../context/MyContext';
 
 const StatusSection = () => {
 
-    const { cartItems } = useContext(MyStore);
+    const { cartItems, categorizedProducts } = useContext(MyStore);
 
     return (
         <section className="grid pt-10 gap-5 grid-cols-2 lg:grid-cols-4">
@@ -83,7 +83,7 @@ const StatusSection = () => {
               {/* Content */}
               <div>
                 <h2 className="font-clash text-2xl font-semibold text-white">
-                  0
+                { categorizedProducts.length || 0 }
                 </h2>
         
                 <h3 className=" text-sm font-medium text-zinc-400">Categories</h3>

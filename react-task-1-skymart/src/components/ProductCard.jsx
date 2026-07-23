@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Star, ShoppingCart, Check } from "lucide-react";
 import { MyStore } from "../context/MyContext";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
+
 
 const ProductCard = ({ product, isInCart }) => {
 
@@ -15,6 +16,8 @@ const ProductCard = ({ product, isInCart }) => {
     setCartItems([...cartItems, product])
     toast.success(`${product.title} added to cart!`);
   }
+
+
 
   return (
     <div
@@ -105,3 +108,8 @@ const ProductCard = ({ product, isInCart }) => {
 };
 
 export default ProductCard;
+
+
+
+
+
