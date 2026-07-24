@@ -4,12 +4,12 @@ import { useContext } from "react";
 import {MyStore} from "../context/MyContext"
 
 const CartProductCard = ({ item }) => {
-    const { cartItems, setCartItems } = useContext(MyStore)
 
-    const deleteCartProduct = (id) => { 
-        localStorage.setItem("cartItems", JSON.stringify(cartItems.filter(elem => elem.id !== id)))
-        setCartItems(cartItems.filter(elem => elem.id !== id));
-    }
+    const {
+        deleteCartProduct,
+        increaseQuantity,
+        decreaseQuantity
+    } = useContext(MyStore)
 
     return (
         <div className="flex items-center gap-4 rounded-2xl border border-zinc-700 bg-[#111111] px-4 py-3 hover:border-lime-400/60 transition-all duration-300">
@@ -44,7 +44,9 @@ const CartProductCard = ({ item }) => {
 
                     <div className="flex items-center gap-3">
 
-                        <button className="flex p-1  items-center justify-center rounded-lg border border-zinc-700 text-zinc-300 transition hover:border-lime-400 hover:text-white">
+                        <button
+                            onClick={() => decreaseQuantity(item.id)}
+                            className="flex p-1  items-center justify-center rounded-lg border border-zinc-700 text-zinc-300 transition hover:border-lime-400 hover:text-white">
                             <Minus size={14} />
                         </button>
 
@@ -52,7 +54,7 @@ const CartProductCard = ({ item }) => {
                             {item.quantity || 1}
                         </span>
 
-                        <button className="flex p-1 items-center justify-center rounded-lg border border-zinc-700 text-zinc-300 transition hover:border-lime-400 hover:text-white">
+                        <button onClick={() => increaseQuantity(item.id)} className="flex p-1 items-center justify-center rounded-lg border border-zinc-700 text-zinc-300 transition hover:border-lime-400 hover:text-white">
                             <Plus size={14} />
                         </button>
 

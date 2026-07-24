@@ -11,7 +11,7 @@ const Cart = () =>  {
 
   // Calculating the total of All Cart Items Prices 
     const total = cartItems.reduce((sum, item) => {
-        return sum + item.price * 1
+        return sum + item.price * item.quantity
     }, 0);
 
 

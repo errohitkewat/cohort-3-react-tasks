@@ -7,17 +7,7 @@ const TopRatedProductCard = ({ product }) => {
 
   const navigate = useNavigate()
   
-  const { cartItems, setCartItems } = useContext(MyStore)
-
-  const addToCart = (elem) => { 
-    // isInCart = cartItems.find(val => val.id === elem.id);
-
-    // if (isInCart) {
-
-    // }
-    localStorage.setItem("cartItems", JSON.stringify([...cartItems, elem]));
-    setCartItems([...cartItems, elem]);
-  }
+  const { addToCart } = useContext(MyStore)
 
 
   return (
@@ -31,7 +21,7 @@ const TopRatedProductCard = ({ product }) => {
         </div>
       </div>
 
-      <div onClick={() => addToCart(product) } className="flex items-center justify-center p-2 bg-lime-300/10 text-lime-400 rounded-md hover:bg-lime-300/60 transition-all duration-300">
+      <div onClick={() => addToCart(product.id) } className="flex items-center justify-center p-2 bg-lime-300/10 text-lime-400 rounded-md hover:bg-lime-300/60 transition-all duration-300">
         <ShoppingBag size={14}  />
       </div>
 

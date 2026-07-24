@@ -2,20 +2,13 @@ import { useContext } from "react";
 import { Star, ShoppingCart, Check } from "lucide-react";
 import { MyStore } from "../context/MyContext";
 import { useNavigate } from "react-router";
-import { toast } from "react-toastify";
 
 
 const ProductCard = ({ product, isInCart }) => {
 
-  const { cartItems, setCartItems } = useContext(MyStore);
+  const { addToCart, deleteCartProduct } = useContext(MyStore);
+  
   const navigate = useNavigate();
-
-  const addToCart = (product) => {
-    const items = [...cartItems, product]
-    localStorage.setItem("cartItems", JSON.stringify(items))
-    setCartItems([...cartItems, product])
-    toast.success(`${product.title} added to cart!`);
-  }
 
 
 
@@ -88,13 +81,13 @@ const ProductCard = ({ product, isInCart }) => {
 
           {
             isInCart ? (
-              <button className="flex items-center gap-2 rounded-full border border-green-700 bg-green-500/10 px-3 py-1 text-sm font-medium text-green-400">
+              <button onClick={() => deleteCartProduct(product.id)} className="flex items-center gap-2 rounded-full border border-green-700 bg-green-500/10 px-3 py-1 text-sm font-medium text-green-400">
                 <Check size={16} />
                 Added
               </button>
             ) : (
               <button
-                onClick={() => addToCart(product)}
+                onClick={() => addToCart(product.id)}
                 className="flex items-center gap-2 rounded-full bg-lime-400 px-3 py-1 text-sm font-semibold text-black transition-colors duration-300 hover:bg-lime-300">
                 <ShoppingCart size={16} />
                 Add

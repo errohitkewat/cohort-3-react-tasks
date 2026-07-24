@@ -4,7 +4,7 @@ import { MyStore } from '../context/MyContext';
 
 const StatusSection = () => {
 
-    const { cartItems, categorizedProducts } = useContext(MyStore);
+    const { cartItems, categorizedProducts, productsData } = useContext(MyStore);
 
     return (
         <section className="grid pt-10 gap-5 grid-cols-2 lg:grid-cols-4">
@@ -39,7 +39,7 @@ const StatusSection = () => {
                 <h2 className="font-clash text-2xl font-semibold text-white">
                     {
                         cartItems.reduce((sum, item) => {
-                            return sum + item.price * 1
+                            return sum + item.price * item.quantity
                         }, 0).toFixed(2) || 0
                     }
                 </h2>
@@ -61,8 +61,8 @@ const StatusSection = () => {
               <div>
                 <h2 className="font-clash text-2xl font-semibold text-white">
                         { 
-                            cartItems.filter(item => { 
-                                return item.rating >= 4
+                            productsData.filter(item => { 
+                                return item.rating >= 4.5
                             }).length || 0
                         }
                 </h2>

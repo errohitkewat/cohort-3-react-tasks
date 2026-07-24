@@ -8,7 +8,6 @@ import { useSearchParams } from "react-router";
 const ShopPage = () => {
 
   const { productsData, cartItems } = useContext(MyStore)
-
   
   const [searchParams] = useSearchParams();
 

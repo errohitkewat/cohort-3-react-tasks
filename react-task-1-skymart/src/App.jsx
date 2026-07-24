@@ -9,19 +9,18 @@ const App = () => {
     <div className="min-h-screen bg-[#0E0E0E] text-white hide-scrollbar">
 
       <ToastContainer
-        position="top-right"
-        autoClose={3000}
+        position="bottom-right"
+        autoClose={2000}
         hideProgressBar={false}
         newestOnTop
+        limit={3}
         closeOnClick
-        pauseOnHover
         draggable
         theme="dark"
         rtl={false}
-        pauseOnFocusLoss
         progressStyle={{
           background: "#84cc16", 
-          height: "4px",
+          height: "3px",
         }}
         
         toastStyle={{
