@@ -33,16 +33,16 @@ const ProductDetailsPage = () => {
 
   
   return (
-    <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
+    <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
       <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-2 lg:gap-14">
         <ProductDetailImage product={product} />
         <ProductDetailInfo isInCart={ isInCart } product={product} />
       </div>
 
-      <div className="mx-auto max-w-6xl mt-10  py-8 lg:py-12">
+      <div className="mx-auto max-w-7xl mt-10  py-8 lg:py-12">
         <h1 className="text-3xl font-clash font-semibold ">Related Products</h1>
 
-        <div className="grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div className="grid py-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           { 
             relatedProducts.map((product) => {
   

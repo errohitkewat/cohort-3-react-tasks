@@ -84,7 +84,7 @@ const ProductDetailInfo = ({ product, isInCart }) => {
       </div>
 
       {/* Buttons */}
-      <div className=" flex mt-5 flex-col gap-4 sm:flex-row">
+      <div className=" flex mt-5  gap-4 ">
         { 
           isInCart ? <button onClick={() => deleteCartProduct(product.id)} className="flex-1 rounded-3xl bg-green-900/30 border border-green-700 py-3 font-semibold text-green-300 transition hover:bg-green-800/40">
           ✓ Added to Cart
